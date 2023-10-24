@@ -1,0 +1,11 @@
+.vs/
+.git/
+.dockerignore
+.gitattributes
+.gitignore
+dockerfile
+src/node_modules/
+src/*.test.js
+src/yarn.lock
+src/db/dockerfile
+README.md
