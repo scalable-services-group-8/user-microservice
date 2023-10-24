@@ -1,0 +1,39 @@
+name: Test User Microservice
+
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+      branches:
+      - 'master'
+
+jobs:
+
+  run-unit-tests:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install Yarn
+        run: npm install --global yarn
+
+      - name: Install Microservice Packages
+        working-directory: src
+        run: yarn install --production
+
+      - name: Add Jest Framework
+        working-directory: src
+        run: yarn add --dev jest
+
+      - name: Run Unit Tests
+        working-directory: src
+        run: yarn test
