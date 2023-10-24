@@ -3,6 +3,7 @@
 .dockerignore
 .gitattributes
 .gitignore
+.github/
 dockerfile
 src/node_modules/
 src/*.test.js
