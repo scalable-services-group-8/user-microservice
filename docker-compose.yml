@@ -1,0 +1,40 @@
+version: '3'
+services:
+
+  userdb-i:
+    build:
+      context: ./src/db/
+      dockerfile: dockerfile
+    container_name: userdb-c
+    networks:
+      - userms-network
+    ports:
+      - "3004:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "userdb-c"]
+      timeout: 20s
+      retries: 10
+
+  userms-i:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: userms-c
+    networks:
+      - userms-network
+      - infra-network
+    ports:
+      - "3001:3001"
+    depends_on:
+      user-db:
+        condition: service_healthy
+    healthcheck:
+      test: curl --fail http://localhost:3001/health-check || exit 1
+      interval: 30s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
+
+networks:
+  userms-network:
+  infra-network:
