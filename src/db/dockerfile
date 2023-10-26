@@ -8,7 +8,7 @@ ENV MYSQL_USER=nitish
 ENV MYSQL_PASSWORD=usermysqldb
 
 # Copy SQL scripts to import data
-COPY ./schema.sql /docker-entrypoint-initdb.d/
+COPY ./src/db/schema.sql /docker-entrypoint-initdb.d/
 
 # Expose the MySQL port
 EXPOSE 3306

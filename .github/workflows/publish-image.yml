@@ -1,4 +1,4 @@
-name: Test and Publish User Microservice Docker Image
+name: Test and Publish User Microservice Docker Images
 
 on:
   workflow_dispatch:
@@ -12,8 +12,8 @@ jobs:
     name: Perform Unit Testing
     uses: ./.github/workflows/test.yml
 
-  publish-docker-image:
-    name: Publish Docker Image
+  publish-docker-images:
+    name: Publish Docker Images
     needs: run-unit-tests
     runs-on: ubuntu-latest
     steps:
@@ -27,10 +27,17 @@ jobs:
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}    
       
-      - name: Build and Push Image
+      - name: Build and Push Microservice Image
         uses: docker/build-push-action@v5
         with:
           push: true
           tags: nitishbits/userms-i:latest
+
+      - name: Build and Push DB Image
+        uses: docker/build-push-action@v5
+        with:
+          file: ./src/db/Dockerfile
+          push: true
+          tags: nitishbits/userdb-i:latest
