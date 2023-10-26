@@ -1,18 +1,22 @@
-name: Publish Docker Image
+name: Test and Publish User Microservice Docker Image
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - 'master'
 
 jobs:
 
+  run-unit-tests:
+    name: Perform Unit Testing
+    uses: ./.github/workflows/test.yml
+
   publish-docker-image:
-
+    name: Publish Docker Image
+    needs: run-unit-tests
     runs-on: ubuntu-latest
-
     steps:
-      
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       

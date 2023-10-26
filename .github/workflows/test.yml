@@ -2,19 +2,14 @@ name: Test User Microservice
 
 on:
   pull_request:
-  workflow_dispatch:
-  push:
-      branches:
-      - 'master'
+  workflow_call:
 
 jobs:
 
   run-unit-tests:
-
+    name: Perform Unit Testing
     runs-on: ubuntu-latest
-    
     steps:
-
       - name: Checkout
         uses: actions/checkout@v3
 
