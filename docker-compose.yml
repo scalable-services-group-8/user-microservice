@@ -3,8 +3,8 @@ services:
 
   userdb-i:
     build:
-      context: ./src/db/
-      dockerfile: dockerfile
+      context: .
+      dockerfile: ./src/db/dockerfile
     container_name: userdb-c
     networks:
       - userms-network
