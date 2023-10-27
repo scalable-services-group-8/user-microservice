@@ -22,7 +22,6 @@ services:
     container_name: userms-c
     networks:
       - userms-network
-      - infra-network
     ports:
       - "3001:3001"
     depends_on:
@@ -37,4 +36,3 @@ services:
 
 networks:
   userms-network:
-  infra-network:

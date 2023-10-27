@@ -6,6 +6,7 @@
 
 - docker network create userms-network
 
+remove relative path in dockerfile for this
 - docker build -t userdb-i ./src/db
 
 - docker build -t userms-i .
@@ -19,6 +20,8 @@
 _OR_
 
 - docker compose up
+
+- docker network connect infra-network userms-c
 
 **Kubernetes Setup -->**
 
