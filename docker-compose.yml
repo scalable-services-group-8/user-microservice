@@ -26,7 +26,7 @@ services:
     ports:
       - "3001:3001"
     depends_on:
-      user-db:
+      userdb-i:
         condition: service_healthy
     healthcheck:
       test: curl --fail http://localhost:3001/health-check || exit 1
