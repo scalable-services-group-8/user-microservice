@@ -1,7 +1,7 @@
 module.exports = {
     port: 3001,
     database: {
-        host: 'userdb-c',
+        host: 'userdb-service', //'userdb-c',
         user: 'nitish',
         password: 'usermysqldb',
         database: 'user_db',
